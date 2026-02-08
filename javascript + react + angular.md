@@ -1,3 +1,837 @@
+## **JS – backend**
+
+- linguagem interpretada (lida e executada junto)  
+- JS só executa uma coisa de cada vez – função em execução é enviada para o call stack  
+- typescript – linguagem a partir do js, com tipagem  
+- [node.js](http://node.js) – js back end, front, mobile e desktop
+
+###### ***Variáveis***
+
+- **var** nome \= valor – não recomendado (pode acessar fora do lugar)   
+- **let** – consegue alterar o valor  
+- **const** – não consegue alterar o valor  
+- **boolean** (true / false)  
+- **null** – vazio (padrão)  
+- **undefined** – não sei ainda
+
+###### ***Comandos***
+
+- **console.log(mensagem)** – imprime no inspecionar (console) do navegador  
+- **variável.toUpperCase()** – tudo em letras maiúsculas  
+- **variável.toLowerCase()** – tudo em letras minúsculas  
+- split – cortar string em lista – default: corta em cada caractere  
+  - **nome.split(“**caractere como referência para cortar**”)** – ex: (“,”)  
+- **variável.toString()** – converte variável para string  
+- **typeof variável** – checar tipo da variável  
+  - **Array.isArray(variável)** – verifica se é uma lista (retorna true/false)
+
+###### ***Lista*** 
+
+- guarda valores de qualquer tipo  
+  - const list \= \[1, 2, 3, 4, “ana”, false\]  
+- adicionar valores no fim da lista  
+  - lista.**push**(“valor”)  
+- adicionar valores no início da lista  
+  - lista.**unshift**(“valor”)  
+- remover 1o valor da lista  
+  - lista.**shift**()  
+- remover último valor da lista  
+  - lista.**pop**()  
+- remover valores da lista (posições)  
+  - lista.**splice**(posição, posição, …)  
+- inverter ordem dos valores  
+  - lista.**reverse**()  
+- alterar valor (mesmo sendo const)  
+  - **lista\[pos\]** \= ‘valor’  
+- verificar posição de elemento ou se existe na lista  
+  - lista.**indexOf**(‘valor’)  
+  - lista.**includes**(‘valor’)  
+- colocar elementos em ordem alfabética  
+  - lista.**sort**()  
+- verificar quantos elementos tem  
+  - lista.**length** 
+
+###### *map*
+
+- executa função para cada elemento do array (ex: multiplicar toda lista por 2\) e joga em novo array  
+```
+   const numbers \= \[1, 2, 3, 4, 5\]  
+   //multiplicar cada um por 2 e joga em uma nova lista  
+   // a função vai ser executada para cada elemento (recebe item atual)  
+   const doubled \= numbers.map(function*(n)* {  
+       return n \* 2;  
+   })  
+   // ou map(num \=\> num \* 2\)  
+   console.log(doubled) //saída: \[2, 4, 6, 8, 10\]
+```
+
+
+- com *array de objetos*  
+```
+  *const users \= \[*  
+      *{ name: 'Alice', age: 25 },*  
+      *{ name: 'Bob', age: 30 },*  
+      *{ name: 'Charlie', age: 35 }*  
+  *\];*  
+  *const ageBy2 \= users.map((user) \=\> {*  
+      *return { ...user, age: user.age \* 2 }; //spread operator \- copia as propriedades do objeto e altera a idade*  
+  *});*  
+  *console.log(ageBy2); //saída: \[{ name: 'Alice', age: 50 }, { name: 'Bob', age: 60 }, { name: 'Charlie', age: 70 }\]*  
+```
+  
+
+
+###### *filter* 
+
+- seleciona alguns elementos da lista e joga em nova (ex: numeros pares)   
+  const ages \= \[15, 22, 18, 30, 25\]  
+  //colocar idades pares em nova lista  
+  /\* const evenAges \= ages.filter(function(n) {  
+       return n % 2 \=== 0; //retorna se for true  
+   }) \*/  
+  const even \= ages.filter(*(number)* \=\> number % 2 \=== 0);  
+  console.log(evenAges) //saída: 22, 18, 30  
+    
+- com array de objetos  
+  const users \= \[  
+      { name: 'Alice', age: 25 },  
+      { name: 'Bob', age: 30 },  
+      { name: 'Charlie', age: 35 }  
+  \];  
+  const ageAbove30 \= users.filter(*(user)* \=\> user.age \>= 30);  
+  console.log(ageAbove30) //saída: \[{ name: 'Bob', age: 30 }, { name: 'Charlie', age: 35 }\]  
+  //id 3 ao 5  
+  const new\_pessoas \= pessoas.filter((pessoa) \=\> pessoa.id \> 2 && pessoa.id \<= 5);      
+  //saída: \[  
+    { id: 3, nome: 'Carla' },  
+    { id: 4, nome: 'Daniel' },  
+    { id: 5, nome: 'Eva' }  
+  \]
+
+
+###### 
+
+###### ***reduce*** 
+
+- reduz toda lista a um elemento (ex: somar valores)  
+- recebe 2 parâmetros: item atual e accumulator (total)  
+- const sum \= ages.reduce(function(n, accumulator) {  
+    return accumulator \+ n;  
+  }, 0\) //inicializa accumulator em 0
+
+###### ***Object*** 
+
+- guarda propriedades e valores  
+- pode ter objeto dentro de objeto, lista pode guardar objetos
+
+  const person \= { 
+
+  fiName: "Ana", 
+
+  laName: "Silva", 
+
+  age: "10", 
+
+  hobbies: \['filme', 'livro', 'jogo'\], 
+
+  dog: { 
+
+  name: "luna", 
+
+  age: 2, 
+
+  },
+
+  };
+
+- acessar: person.propriedade
+
+###### ***lista com objetos***
+
+- ex: teste de backend de uma API  
+    
+  const todo \= \[  
+      {  
+          id: 1,  
+          title: 'Estudar JavaScript',  
+          completed: false  
+      },  
+      {  
+          id: 2,  
+          title: 'Fazer exercícios',  
+          completed: true  
+      },  
+      {  
+          id: 3,  
+          title: 'Ler um livro',  
+          completed: false  
+      }  
+  \]
+
+    
+- imprimir cada objeto da lista
+
+  todo.forEach(function(item) {
+
+      console.log(\`id: ${item.id} \- título: ${item.title} \- concluído: ${item.completed}\`)
+
+  })
+
+
+
+
+###### ***JSON***
+
+const pessoas \= \[  
+    { id: 1, nome: "Ana" },  
+    { id: 2, nome: "Bruno" },  
+    { id: 3, nome: "Carla" },  
+    { id: 4, nome: "Daniel" },  
+    { id: 5, nome: "Eva" }  
+\];
+
+const pessoasJson \= JSON.stringify(pessoas);  
+console.log(pessoasJson);
+
+const listaNova \= JSON.parse(pessoasJson)
+
+- transitar dados entre frond e back, para enviar a lista com objetos  
+- tudo tem aspas, não consegue mais acessar elemento específico (json é tipo uma string\\0)  
+- transformar **objeto js em JSON**  
+  - const listaJson \= JSON.stringify(lista)  
+  - const novoJson \= JSON.stringify({id: 1, nome: "Ana"})  
+  - console.log(novoJson)
+
+  ![][image41]
+
+- **JSON em objeto js**  
+  const listaNova \= JSON.parse(listaJson)  
+  //acesso  
+  console.log(listaNova.nome)
+
+
+###### ***Loop** – let pq vai alterando*
+
+ const cars \= \['Audi', 'BMW', 'Lamborghini', 'Aston Martin'\]
+
+*for*  
+for (let i \= 0; i \< cars.length; i\++) {  
+    console.log(\`nome: ${cars\[i\]}\`)  
+}  
+//OU  
+for (const car of cars) {  
+    console.log(car) //saída: Audi, BMW, Lamborghini, Aston Martin  
+}
+
+*forEach*
+
+- bom para quando quer acessar o index (i) de cada iteração  
+- executa bloco de código para cada elemento do array  
+- cars.forEach(function*(car, index)* {  
+-     console.log(\`índice: ${index} \- nome: ${car}\`)   
+-     console.log(car)  
+- })
+
+*for in*
+
+- bom para interação com objetos únicos  
+- com objetos (propriedades)  
+  for (property in person) {  
+      console.log(property)  
+      console.log(person\[property\])  
+  }  
+  saída 1: fiName, laName, age, hobbies, dog, email  
+  saída 2: Ana, Silva, (3) \['filme', 'livro', 'jogo'\], {name: 'luna', age: 2}, ana@email.com
+
+*for of*
+
+- melhor para arrays (fácil de entender)  
+- executa um bloco de código para cada elemento em um array   
+  const iterable \= \[10, 20, 23\];  
+  for (let value of iterable) {  
+      console.log(value); //saída: 10, 20, 23  
+  }
+
+- com array de objetos  
+  const iterable \= \[10, 20, 23\];  
+  for (let value of iterable) {  
+      console.log(value); //saída: 10, 20, 23  
+  }  
+  //objetos  
+  const people \= \[  
+      { name: "Ana", age: 12 },  
+      { name: "Bia", age: 72 },  
+  \];  
+    
+  for (let person of people) {  
+      console.log(person);  
+  } //saída: { name: "Ana", age: 12 }, { name: "Bia", age: 72 }
+
+
+  
+*while*
+
+- executa enquanto condição for verdadeira  
+- break – interrompe o loop  
+- continue – interrompe 1 execução do loop  
+  const i \= 0;  
+  const n \= 0;  
+  while (i \< 5) {  
+      i\++;  
+      if (i \=== 3) {  
+          continue; //pula para a próxima iteração  
+      }  
+      n \+= i;  
+  }  
+  console.log(n); //saída: 10 (1 \+ 2 \+ 4 \+ 5\)  
+    
+  let i \= 0;  
+  while (i \< cars.length) {  
+      console.log(\`índice: ${i} \- nome: ${cars\[i\]}\`) //saída: índice: 0 \- nome: Audi, índice: 1 \- nome: BMW, ...  
+      i\++;  
+    
+      if (i \=== 3) {  
+          console.log('Chegou no índice 3, saindo do loop.');  
+          break; //quebra loop  
+      }  
+  }
+
+###### ***Condicionais***
+
+- \== verifica só o valor  
+- \=== verifica valor e tipo  
+  - const sum \= 1 \+ 1  
+  - if (sum \== 2\) → true  
+  - if (sum \== “2”) → true  
+  - if (sum \=== “2”) → false  
+- && e ||  
+    
+- definir variáveis baseado em uma condição  
+  - let var;  
+    if (xxx) var \= x  
+    else var \= y
+
+    
+- **operador ternário** (simplifica)  
+  - **(***condição***)** **?** *valor se for true* **:** *valor se for false*  
+    const b \= (sum \=== 2) ? 10 : 20;  
+    console.log(b) //saída: 10
+
+    
+- **switch case**
+
+  const day \= 3;
+
+  switch (day) {
+
+      case 2:
+
+          console.log('Segunda-feira');
+
+          break;
+
+      case 3:
+
+          console.log('Terça-feira'); //saída: Terça-feira
+
+          break;
+
+      case 4:
+
+          console.log('Quarta-feira');
+
+          break;
+
+      case 5:
+
+          console.log('Quinta-feira');
+
+          break;
+
+      case 6:
+
+          console.log('Sexta-feira');
+
+          break;
+
+      default:
+
+          console.log('Dia inválido');
+
+  }
+
+
+- **truthy e falsy**  
+  - checar se é true ou false  
+    - console.log(**\!var**)  
+    - \! inverte o valor booleano atual  
+      - \!false \= true  
+      - if (\!var) é igual a if (var \== false)  
+  - **falsy** – false, 0, "", null, undefined, NaN  
+  - **truthy** – "0", "false", \[\], {}, function() {}, etc  
+  - checar se lista é vazia  
+    - if (lista.lenght) → se tiver vazia \= false  
+    - if (lista) → sempre true
+
+###### ***Funções e arrow functions***
+
+- pode passar ou definir parãmteros
+
+```
+function sumFunction*(a, b \= 10)* {  
+    console.log(a \+ b);  
+}  
+sumFunction(5); //saída: 15
+```
+
+**Arrow functions**
+
+- declara como variável
+```
+
+*// Traditional function*  
+   function add(a, b) {  
+     return a \+ b;  
+   }
+
+   *// Arrow function – função de 1 linha*  
+   const add \= (a, b) \=\> a \+ b;
+```
+
+###### 
+
+###### ***POO***
+
+- método estático – classe não precisa ser instanciada para executar o método (não usa nenhum dado de objeto), chama direto pela classe  
+- herança – herda atributos em uma nova classe 
+``` 
+  class Pessoa {  
+      constructor*(name1, name2, age)* {  
+          //atributos  
+          this.name1 \= name1;  
+          this.name2 \= name2;  
+          this.age \= age;  
+      }  
+    
+      //metodo para juntar name1 e name2  
+      getFullName*()* {  
+          console.log(\`${this.name1} ${this.name2}\`);  
+      }  
+    
+      static hello*()* {  
+          console.log('Hello\!');  
+      }  
+    
+      speak*()* {  
+          console.log(\`Olá, meu nome é ${this.name1} ${this.name2} e tenho ${this.age} anos.\`);  
+      }  
+  }  
+    
+  const p1 \= new Pessoa('João', 'Silva', 30);  
+  console.log(p1)  
+  //p1.getFullName(); //saída: João Silva  
+  Pessoa.hello(); //saída: Hello\!  
+  p1.speak(); //saída: Olá, meu nome é João Silva e tenho 30 anos.  
+    
+  //herança  
+  class Aluno extends Pessoa {  
+      constructor*(name1, name2, age, course)* {  
+          super(name1, name2, age); //chama o construtor da classe pai  
+          this.course \= course;  
+      }  
+       
+      speak*()* {  
+          console.log(\`Olá, eu sou um aluno de ${this.course}\!\`);  
+      }  
+    
+  }  
+  const a1 \= new Aluno('Maria', 'Oliveira', 22, 'Engenharia');  
+  Aluno.hello(); //saída: Hello\!  
+  a1.speak(); //saída: Olá, eu sou um aluno de Engenharia\!
+```
+
+###### ***Desestruturação***
+
+- extrair valores de arrays ou propriedades de objetos e passá-los para variáveis
+
+**Array / lista**
+
+- errado  
+```
+  const numbers \= \[1, 2, 3\];  
+  const first \= numbers\[0\];  
+  const second \= numbers\[1\];  
+  const third \= numbers\[2\];  
+  console.log(first, second, third); //saída: 1 2 3
+```
+
+- desestruturar array  
+```
+   const \[first, second, third\] \= numbers; //desestruturação do array
+```
+
+- atribuição de variáveis por desestruturação  
+```
+   const \[a, b, ...rest\] \= \[1, 2, 3, 4, 5, 6\]  
+   console.log(a, b, rest); //saída: 1 2 \[3, 4, 5, 6\]
+```
+
+- novo array a partir (incluindo) array existente  
+```
+   const numbers \= \[1, 2, 3\];  
+   const morenumbers \= \[...numbers, 4, 5, 6\]  
+    
+   console.log(numbers) //saída: \[1, 2, 3\]  
+   console.log(morenumbers) //saída: \[1, 2, 3, 4, 5, 6\]
+```
+
+- inverter valores de variáveis (não precisa de aux)  
+```
+   let a \= 1;  
+   let b \= 2;  
+   \[a, b\] \= \[b, a\];  
+   console.log(a) //saída: 2  
+   console.log(b) //saída: 1
+```
+
+**Objetos**
+
+- acessar propriedades  
+```
+  const user \= {  
+      name: 'John',  
+      age: 20,  
+      email: 'john@email.com',  
+  };  
+```
+    
+- errado  
+```
+  console.log(user.name);  
+  console.log(user.age);  
+  console.log(user.email);
+```
+
+- desestruturado  
+```
+  const { name, age, email } \= user; //desestruturação do objeto  
+  console.log(name);  
+  console.log(age);  
+  console.log(email);
+```
+
+- alterar: mudar nome da variável que guarda o nome do user, sem alterar o nome da propriedade  
+```
+  const { name: fullName, age, email } \= user; //desestruturação do objeto  
+  console.log(fullName);
+```
+
+- interagir com o resto do objeto  
+```
+  const { a, b, ...rest} \= { a: 1, b: 2, c: 3, d: 4 }; //rest operator \- pega resto das propriedades  
+  console.log(a); // 1  
+  console.log(b); // 2  
+  console.log(rest); // { c: 3, d: 4 }  
+```
+- outro exemplo  
+  - atribui valor padrão se a propriedade não existir, previne de acessar propriedade inexistente no objeto   
+  - b não existe no objeto que é desestruturado mas ainda consegue atribuir um valor para b  
+  - valor original não é alterado (a: 3\)
+
+```
+  const { a \= 10, b \= 5} \= { a: 3};
+
+  console.log(a); // 3
+
+  console.log(b); // 5
+```
+
+- desestruturação em propriedades nestadas (aninhadas – acessar propriedades dentro de objetos que estão dentro de outros objetos)  
+```
+  const user \= {  
+      name: {  
+          fName \= 'John',  
+          lName \= 'Doe',  
+      };  
+  };  
+  const { name: fName, lName } \= user;  
+  console.log(fName); //John  
+  console.log(lName); //Doe 
+``` 
+  
+
+
+###### ***Promises***
+
+- JS só executa uma coisa de cada vez – função em execução é enviada para o call stack  
+  - ex: função de requisição para API leva 10s para retornar  
+  - call stack fica congelado até a função terminar  
+  - ex: função com setTimeout()
+
+
+- promise: envia função que não congela o call stack  
+  - .then e .catch
+
+  const returnName \= *(name)* \=\> {
+
+      //retornar nova promise, recebe 2 parâmetros
+
+      //resolve: quando a promise é cumprida OU reject: deu erro
+
+      return new Promise(*(resolve, reject)* \=\> {
+
+          try {
+
+              setTimeout(*()* \=\> {
+
+                  resolve(name);
+
+              }, 5000); //resolve após 5s
+
+          } catch (error) {
+
+              reject(error); //pode passar função para o .catch – vai ser executada quando Promise for rejeitada, recebe de parâmetro o valor de reject
+
+          }
+
+      });
+
+  };
+
+  const printAge \= *(age)* \=\> {
+
+      console.log(age);
+
+  };
+
+
+  **//returnName é deixada de lado e as próximas funções são executadas (printAge)**
+
+  **//ela promete que vai retornar algo \- call stack pega a próxima função**
+
+  **//.then \-- passa uma função que vai ser executada quando a promise for cumprida (resolve)**
+
+  **//recebe como parâmetro o valor que foi passado no resolve**
+
+```
+  returnName("Ana B").then(*(name)* \=\> console.log(name)); //saída: "Ana B" após 5s
+
+  printAge("21");
+
+  /\*saída:
+
+    21
+
+    //espera 5s
+
+      Ana B
+
+  \*/
+```
+
+- pegar dados de uma API (URL)
+```
+
+  function fetchUsers*()* { //fetch \- função nativa do JS para buscar dados em uma API / URL
+
+      fetch('https://jsonplaceholder.typicode.com/users')
+
+          .then(*(response)* \=\> response.json()) //response: converte para JSON
+
+          .then(*(jsonResponse)* \=\> console.log(jsonResponse));
+
+  }
+
+  fetchUsers(); //chama função
+```
+
+- saída
+
+  ![][image42]
+
+###### ***async / await***
+
+- (melhor) – mesma API  
+  - async (função assíncrona) – armazena valor do resolve em uma variável (response), sem usar .then  
+  - coloca todas chamadas de Promises (await) em um bloco try catch – se alguma Promise falhar, executa catch
+```
+
+  async function fetchUsers*()* {
+
+      try {
+
+          const response \= await fetch('https://jsonplaceholder.typicode.com/users'); //await espera a promise ser resolvida
+
+          const jsonResponse \= await response.json(); //await espera a conversão para JSON ser concluída
+
+          console.log(jsonResponse);
+
+      } catch (error) {
+
+          console.log('Erro\!');
+
+      }
+
+     
+
+  }
+
+  fetchUsers(); //chama função
+```
+
+
+  
+
+
+###### ***Selecionar elementos do DOM***
+
+- DOM \= estrutura do site
+
+**selecionar 1 elemento**
+
+- getElementById – selecionar o elemento pelo id – retorna referência ao elemento  
+- (melhor) **querySelector** – seleciona \#id ou .classe – retorna elemento em si  
+  - retorna 1o elemento da classe/id
+
+**//selecionar UM ELEMENTO**  
+const addUserText \= document.getElementById("add-user");   
+const addUserText \= document.querySelector("\#add-user") OU (".container") OU (".container \#id"); 
+
+console.log(addUserText); //saída: \<button id="add-user"\>Adicionar usuário\</button\>
+
+- alterar conteúdo com getElementById 
+
+addUserText.innerText \= "alterado"; 
+
+- alterar conteúdo com querySelector 
+
+addUserText.textContent \= "alterado"; 
+
+**selecionar vários elementos**
+
+- (melhor) **querySelectorAll** – retorna lista, pode ser classe dentro de classe  
+- (não é bom) getElementsByTagName – retorna itens de uma tag HTML  
+- (não é bom) getElementsByClassName – seleciona elementos de uma classe  
+  - *HTMLCollection* – não consegue usar elementos de lista
+
+```
+**const allItems \= document.querySelectorAll(".item"); //OU .items .item**  
+**console.log(allItems); //saída: NodeList(3) \[div.item, div.item, div.item\]**  
+**console.log(allItems\[0\]); //saída: \<div class="item"\>Item 1\</div\>**
+
+**//transforma em array**  
+**
+
+const allItemsArray \= Array.from(allItems);**  
+**console.log(allItemsArray); //saída: \[div.item, div.item, div.item**
+
+**const allItemsbyClass \= document.getElementsByClassName("item");**  
+**console.log(allItemsbyClass); //saída: HTMLCollection(3) \[div.item, div.item, div.item\]
+```**
+
+###### ***Eventos – mdn events***
+
+- formas de executar uma ação quando algo acontece (ex: clicar no botão)  
+```
+  const submitButton \= document.querySelector('\#submit-button');  
+  const myForm \= document.querySelector("\#my-form");  
+  const body \= document.querySelector("body");  
+    
+  const items \= document.querySelector(".items"); //seleciona lista de itens  
+  //ver valor dos inputs  
+  const nameInput \= document.querySelector('\#name');  
+  const emailInput \= document.querySelector('\#email');  
+    
+    
+                          //evento de clicar, chama função event  
+  submitButton.addEventListener('click', function*(event)* {  
+  //previne o comportamento padrão do botão submit (tentar enviar ao ser clicado e recarregar a página)  
+      event.preventDefault();  
+      console.log('Botão clicado\!'); //ao clicar no botão: Botão clicado\!  
+      const nameValue \= nameInput.value; //pega o valor do input name  
+      console.log(\`Nome: ${nameValue}\`); //saída: Nome: valor do input name  
+      //console.log(\`Nome: ${nameInput.value}\`); //saída: Nome: valor do input name  
+  });
+```
+
+- acessar valor do input quando alterado  
+```
+  nameInput.addEventListener('change', function*(event)* {  
+      console.log(event.target.value); //acessar valor do input quando escuta mudança  
+  })
+```
+
+- mostrar mensagem se os 2 valores não estiverem preenchidos (exemplo) 
+``` 
+  if (nameValue \=== '' || emailValue \=== '') {  
+          alert('Por favor, preencha todos os campos.'); //alerta se algum campo estiver vazio  
+          return; //sai da função se algum campo estiver vazio  
+      }
+```
+
+- mudar background/cor ao enviar  
+```
+   myForm.style.background \= "blue"; //do form  
+   body.style.background \= "lightblue"; //do body  
+   body.style.color \= "lightblue"; //cor do texto
+```
+
+- alterar textos dos *items* ao enviar form  
+```
+   items.firstElementChild.textContent \= nameValue; //altera o primeiro item para o nome  
+   items.children\[1\].textContent \= emailValue;
+```
+
+
+###### ***Validar form***
+
+- mensagem de erro no form – por 3s  
+```
+  const msg \= document.querySelector('.msg'); //div vazia no início do form  
+    
+  submitButton.addEventListener('click', function*(event)* {  
+      ...  
+      if (nameValue \=== '' || emailValue \=== '') {  
+          //preenche classe msg acima do form  
+          msg.textContent \= 'preencha tudo';  
+          msg.classList \= "error"; //adiciona classe a msg  
+           
+          //após o tempo); a função abaixo vai ser executada  
+          setTimeout(*()* \=\> {  
+              msg.textContent \= ''; //limpa a msg  
+              msg.classList \= ""; //remove a classe error  
+          }, 3000); //3s  
+          return;  
+      }  
+  })
+```
+
+- criar elemento (li) – createElement(‘tipo’)  
+  - adicionar valores como novos *li* na *ul* (vazia) e imprimir 
+```
+
+      const li \= document.createElement('li');
+
+      li.classList \= "item"; //adiciona classe item
+
+      li.innerHTML \= \`Nome: ${nameValue} \<br /\> Email: ${emailValue}\`; //adiciona texto
+
+      //adicionar li na ul
+
+      items.appendChild(li); //adiciona li na lista de itens
+
+
+- limpar campos após submit  
+```
+  submitButton.addEventListener('click', function*(event)* {  
+      ...  
+      nameInput.value \= '';  
+      emailInput.value \= '';  
+  })
+```
+  
+
+
 ## **JS** – front
 
 - conjunto de ferramentas e bibliotecas (padrões e componentes reutilizáveis)  
@@ -74,6 +908,7 @@
 
 - cria vários componentes (funções js, componentes) que são juntados – componentes em JSX (html \+ js)  
 - JSX só pode retornar 1 elemento  
+```
     return (  
       \<div className\="w-screen h-screen bg-slate-500 flex justify-center p-6"\>  
         \<div className\="width\[500px\]"\>  
@@ -96,6 +931,7 @@
       \</h2\>  
     );  
   }
+```
 
 - com listas (renderiza cada elemento, map): passar **key** – valor único, react saber qual item é qual  
 - adicionar classe (configuração) se condição for verdadeira – componente filho (Tasks.jsx)  
@@ -114,6 +950,7 @@
       }  
       
 - **componente de estilo** (css) – ex: input – Input.jsx  
+```
   function Input*(props)* {  
       return (  
           \<input  
@@ -124,8 +961,10 @@
   }  
     
   export default Input;  
+```
 - chamar
 
+```
           \<Input
 
             type\="text"
@@ -137,6 +976,7 @@
             onChange\={*(event)* \=\> setTitle(event.target.value)} 
 
           /\>
+```
 
 
 
@@ -148,6 +988,7 @@
   - ação de resposta a uma interação do usuário  
   - importa useState do react  
     import { useState } from 'react'  
+```
       
     function App*()* {  
       const \[msg, setMsg\] \= useState("Mensagem inicial")  
@@ -162,6 +1003,7 @@
         \</div\>  
       );  
     }  
+```
     
 
 **API**
@@ -173,6 +1015,7 @@
   ![][image45]  
 - função executada só na 1a vez que o usuário acessa a aplicação (useEffect, 2o par: lista vazia \[\])  
 - pegar dados de API e persistir  
+```
   useEffect(*()* \=\> {  
     const fetchTasks \= async *()* \=\> {  
       //chama API  
@@ -189,6 +1032,7 @@
     };  
     fetchTasks();  
   }, \[\])
+```
 
 
 
